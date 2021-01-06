@@ -9,6 +9,8 @@
 #ifndef list_string_test_h
 #define list_string_test_h
 
+// TODO: remake those test functions with using of Google Test framework
+
 void TestToBytesAndToInt() {
   {
     size_t r{ 34 };
