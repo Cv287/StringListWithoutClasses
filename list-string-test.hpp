@@ -9,29 +9,6 @@
 #ifndef list_string_test_h
 #define list_string_test_h
 
-// TODO: remake those test functions with using of Google Test framework
-
-void TestToBytesAndToInt() {
-  {
-    size_t r{ 34 };
-    char output[sizeof(size_t)];
-    ToBytes(r, output, 0);
-    assert(ToInt(output, 0) == 34);
-  }
-  {
-    size_t r{ 0x12345678 };
-    char output[sizeof(size_t)];
-    ToBytes(r, output, sizeof(size_t));
-    assert(ToInt(output, sizeof(size_t)) == 0x12345678);
-  }
-  {
-    size_t r{ 0xF23456F8 };
-    char output[sizeof(size_t)];
-    ToBytes(r, output, sizeof(size_t));
-    assert(ToInt(output, sizeof(size_t)) == 0xF23456F8);
-  }
-}
-
 void TestInit() {
   {
     StringList list;
@@ -47,33 +24,6 @@ void TestDestroy() {
   StringListInit(&list);
   StringListDestroy(&list);
   assert(list == nullptr);
-}
-
-void TestAddSizeCapacity() {
-  {
-    StringList list;
-    StringListInit(&list);
-    assert(_Get_Size(list) == 1);
-    assert(_Get_Capacity(list) == 1);
-    char str[]{ "lion" };
-    StringListAdd(&list, str);
-    assert(_Get_Size(list) == 2);
-    assert(_Get_Capacity(list) == 2);
-    StringListDestroy(&list);
-  }
-  {
-    StringList list;
-    StringListInit(&list);
-    char str[]{ "zebra" };
-    for (int i{ 0 }; i < 100; i++) {
-      StringListAdd(&list, str);
-    }
-    const auto LIST_SIZE = _Get_Size(list);
-    const auto LIST_CAPACITY = _Get_Capacity(list);
-    assert(LIST_SIZE == 101);
-    assert(LIST_CAPACITY == 128);
-    StringListDestroy(&list);
-  }
 }
 
 void TestGetSet() {
@@ -154,9 +104,7 @@ void TestListIndexOf() {
 void TestAll() {
   TestInit();
   TestDestroy();
-  TestAddSizeCapacity();
   TestGetSet();
-  TestToBytesAndToInt();
   TestListIndexOf();
   TestRemove();
 }
