@@ -28,7 +28,7 @@
 using String = char*;
 using StringList = char**;
 
-/* Initializes list */
+/* Initializes list; nullptrs not allowed! */
 void StringListInit(StringList* list);
 /* Destroy list and set pointer to NULL. */
 void StringListDestroy(StringList* list);

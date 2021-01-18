@@ -101,14 +101,14 @@ void _Swap_Elements(StringList list, size_t index1, size_t index2) {
 void StringListInit(StringList* list) {
   *list = (StringList) malloc(sizeof(String));
   if (*list == nullptr) {
-    exit(-1);
+    throw "Memory not allocated.";
   }
   
   // Bytes of first string are used as two unsigned integers.
   // These integer values correspond to: 1.Size 2.Buffer Size (Capacity).
   (*list)[0] = (String) malloc(sizeof(size_t) * 2);
   if (*list[0] == nullptr) {
-    exit(-1);
+    throw "Memory not allocated.";
   }
   
   _Set_Size(*list, 1);
@@ -129,7 +129,7 @@ void StringListDestroy(StringList* list) {
 
 void StringListAdd(StringList* list, String str) {
   if (_Try_To_Realloc(list) == -1) {
-    exit(-1);
+    throw "Memory not reallocated.";
   }
   
   StringList lst = *list;
