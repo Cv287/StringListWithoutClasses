@@ -7,11 +7,11 @@ using namespace std;
 
 constexpr int MENU_OPTIONS_COUNT = 7;
 
-/* Stops the program until user inputs something by keayboard. */
+/* Stops the program until user inputs something by keyboard. */
 void BlockByUserInput() {
   cout << "Input any value to continue...\n>> ";
-  string str;
-  getline(cin, str, '\n');
+  cin.get();
+  cin.get();
 }
 
 /* Prints msg and returns string from std::cin. */
@@ -32,10 +32,8 @@ bool IsNumber(const string& str) {
   return true;
 }
 
-/*
- Prints msg and waits in loop until
- user inputs a number in [low; high] interval.
-*/
+/* Prints msg and waits in loop until
+ user inputs a number in [low; high] interval. */
 int HandleNumberInput(const string& msg, const int low, const int high) {
 #define NUMBER atoi(input.c_str())
   string input;
